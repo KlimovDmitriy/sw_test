@@ -7,11 +7,12 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "jest --verbose",
-    "populate" : "node utils/populateDb.js"
+    "populate": "node utils/populateDb.js"
   },
   "author": "Dmitriy Klimov",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
