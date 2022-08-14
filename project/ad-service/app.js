@@ -1,0 +1,18 @@
+require('express-async-errors')
+const express = require('express')
+const app = express()
+const cors = require('cors')
+const {MONGODB_URL} = require('./utils/config')
+const mongoose = require('mongoose')
+const eventsRouter = require('./controllers/events')
+const middleware = require('./utils/middleware')
+const contractorRouter = require('./controllers/contactors');
+mongoose.connect(MONGODB_URL)
+app.use(cors())
+app.use(express.json())
+app.use(middleware.tokenExtractor)
+app.use('/', eventsRouter)
+app.use('/', contractorRouter)
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
+module.exports = app
