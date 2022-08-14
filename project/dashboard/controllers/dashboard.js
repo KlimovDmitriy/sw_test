@@ -3,7 +3,7 @@ const dashboardRouter = require('express').Router();
 
 dashboardRouter.get('/api/dashboard', async (request, response) => {
   const results = await AdResult.find({});
-  return response.json(results);
+  return response.status(200).json({message: "Success"});
 });
 
 dashboardRouter.post('/api/dashboard', async (request, response, next) => {
@@ -11,7 +11,7 @@ dashboardRouter.post('/api/dashboard', async (request, response, next) => {
     const {type, ...data} = request.body;
     const ad = new AdResult({
       type,
-      additionalData: data,
+      additionalData: data.data,
     });
     await ad.save();
     response.status(200).json({message: 'Success'});
