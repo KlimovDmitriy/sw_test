@@ -26,7 +26,7 @@ function App() {
     });
   };
 
-  const handleAdEvent = (type, additionalData = {}) => {
+  const handleAdEvent = (type, additionalData) => {
     adService.adEvent({
       type,
       additionalData,
