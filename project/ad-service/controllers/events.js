@@ -28,7 +28,7 @@ eventsRouter.post('/api/events', async (request, response, next) => {
 
 eventsRouter.post('/api/ads', async (request, response, next) => {
   try {
-    const {data, token} = request.body;
+    const {token, ...data} = request.body.data;
     if (!token) {
       return response.status(400).json({error: 'Invalid token'});
     }
