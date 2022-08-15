@@ -1,6 +1,7 @@
 const Contractor = require('../models/contractor');
 const Event = require('../models/event');
 const axios = require('axios');
+const logger = require('../utils/logger');
 const eventsRouter = require('express').Router();
 
 eventsRouter.get('/api/events', async (request, response) => {
@@ -40,7 +41,7 @@ eventsRouter.post('/api/ads', async (request, response, next) => {
     const callbackRequest = await axios.post(callbackUrl, {data, token});
     response.status(200);
   } catch (e) {
-    console.log(e);
+    logger.error(e)
     response.status(400).json({error: JSON.stringify(e)});
   }
 
