@@ -11,7 +11,7 @@ dashboardRouter.get('/api/dashboard', async (request, response) => {
 dashboardRouter.post('/api/dashboard', async (request, response, next) => {
   try {
     logger.info(request.body.data)
-    const {type, ...data} = request.body.data;
+    const {type, ...data} = request.body.data.data;
     const token = request.body.token
     if (AD_TOKEN !== token) {
       return response.status(500).send({message: 'Invalid token'})
