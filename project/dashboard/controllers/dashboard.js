@@ -20,6 +20,7 @@ dashboardRouter.post('/api/dashboard', async (request, response, next) => {
       additionalData: data,
     });
     await ad.save();
+    console.log(response.status(200).json({message: 'Success'}).send())
     return response.status(200).json({message: 'Success'}).send();
   } catch (e) {
     return response.status(500).json({message: 'Failure', error: JSON.stringify(e)}).send();
