@@ -4,8 +4,9 @@
 
 import axios from "axios";
 
-const baseUrl = 'http://localhost:3020/api/contractors'
+const baseUrl = '/api/contractors'
 
+// Возвращаем первый элемент, т.к. нет функционала регистрации и авторизации
 const getContractor = async () => {
   const response = await axios.get(baseUrl)
   return response.data[0]
