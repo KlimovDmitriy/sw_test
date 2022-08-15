@@ -1,10 +1,9 @@
-import fetch from 'node-fetch';
 const Contractor = require('../models/contractor');
 const Event = require('../models/event');
 const axios = require('axios');
 const logger = require('../utils/logger');
 const eventsRouter = require('express').Router();
-
+const fetch = require('node-fetch');
 
 eventsRouter.get('/api/events', async (request, response) => {
   const events = await Event.find({});
