@@ -26,10 +26,12 @@ function App() {
     });
   };
 
-  const handleAdEvent = (type, ...data) => {
+  const handleAdEvent = (type, ...[data]) => {
     adService.adEvent({
-      type,
-      data,
+      data: {
+        type,
+        ...data
+      },
       token: contractor.token
     }).then(resolve => {
       if (resolve.error) {
