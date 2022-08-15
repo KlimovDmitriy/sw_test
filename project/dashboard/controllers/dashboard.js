@@ -22,7 +22,7 @@ dashboardRouter.post('/api/dashboard', async (request, response, next) => {
       additionalData: data,
     });
     const newAdResult = await ad.save();
-    return response.status(201).send({message: JSON.stringify(newAdResult)});
+    return response.status(200).send({message: JSON.stringify(newAdResult)});
   } catch (e) {
     return response.status(500).send({message: 'Failure', error: JSON.stringify(e)});
   }
