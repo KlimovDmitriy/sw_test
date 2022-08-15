@@ -39,11 +39,12 @@ eventsRouter.post('/api/ads', async (request, response, next) => {
       return response.status(400).json({error: 'Invalid contractor'});
     }
     const callbackUrl = contractor.callbackUrl;
-    const test = fetch(callbackUrl, {
+    const test = await fetch(callbackUrl, {
       method: 'POST',
       body: JSON.stringify({token, data}),
       headers: { 'Content-Type': 'application/json' }
     })
+    logger.info(test)
     // const callback = await axios.post(callbackUrl, {data, token});
     // console.log(callback)
     response.status(300);
