@@ -9,7 +9,7 @@ dashboardRouter.get('/api/dashboard', async (request, response) => {
 });
 
 dashboardRouter.post('/api/dashboard', async (request, response, next) => {
-  return response.status(500)
+  return response.status(500).send()
   try {
     logger.info(request.body.data)
     const {type, ...data} = request.body.data;
