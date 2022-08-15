@@ -1,5 +1,6 @@
 const AdResult = require('../models/adResult');
 const {AD_TOKEN} = require('../utils/config');
+const logger = require('../utils/logger');
 const dashboardRouter = require('express').Router();
 
 dashboardRouter.get('/api/dashboard', async (request, response) => {
@@ -9,6 +10,7 @@ dashboardRouter.get('/api/dashboard', async (request, response) => {
 
 dashboardRouter.post('/api/dashboard', async (request, response, next) => {
   try {
+    logger.info(request.body.data)
     const {type, ...data} = request.body.data;
     const token = request.body.token
     if (AD_TOKEN !== token) {
