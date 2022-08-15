@@ -44,13 +44,10 @@ eventsRouter.post('/api/ads', async (request, response, next) => {
       body: JSON.stringify({token, data}),
       headers: { 'Content-Type': 'application/json' }
     })
-    console.log(test)
-    // const callback = await axios.post(callbackUrl, {data, token});
-    // console.log(callback)
-    response.status(200);
+    response.status(201).send();
   } catch (e) {
     logger.error(e)
-    response.status(400).json({error: JSON.stringify(e)});
+    response.status(400).send({error: JSON.stringify(e)});
   }
 
 });

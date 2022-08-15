@@ -1,6 +1,5 @@
 const AdResult = require('../models/adResult');
 const {AD_TOKEN} = require('../utils/config');
-const logger = require('../utils/logger');
 const dashboardRouter = require('express').Router();
 
 dashboardRouter.get('/api/dashboard', async (request, response) => {
@@ -9,22 +8,22 @@ dashboardRouter.get('/api/dashboard', async (request, response) => {
 });
 
 dashboardRouter.post('/api/dashboard', async (request, response, next) => {
-  response.status(201).send({message: 'Success'})
-  // try {
-  //   const {type, ...data} = request.body.data;
-  //   const token = request.body.token
-  //   if (AD_TOKEN !== token) {
-  //     //Тут можно добавить логгирование для левых запросов на данный эндпоинт
-  //   }
-  //   const ad = new AdResult({
-  //     type,
-  //     createdAt: new Date(),
-  //     additionalData: data,
-  //   });
-  //   await ad.save();
-  // } catch (e) {
-  //   logger.error(e) // Выводим в консоль сервера ошибки, небезопасно
-  // }
+  try {
+    const {type, ...data} = request.body.data;
+    const token = request.body.token
+    if (AD_TOKEN !== token) {
+      return response.status(500).send({message: 'Invalid token'})
+    }
+    const ad = new AdResult({
+      type,
+      createdAt: new Date(),
+      additionalData: data,
+    });
+    await ad.save();
+    return response.status(201).send({message: 'Success'});
+  } catch (e) {
+    return response.status(500).send({message: 'Failure', error: JSON.stringify(e)});
+  }
 
 });
 
