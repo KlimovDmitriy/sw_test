@@ -1,5 +1,6 @@
 const AdResult = require('../models/adResult');
 const {AD_TOKEN} = require('../utils/config');
+const logger = require('../utils/logger');
 const dashboardRouter = require('express').Router();
 
 dashboardRouter.get('/api/dashboard', async (request, response) => {
@@ -12,7 +13,7 @@ dashboardRouter.post('/api/dashboard', async (request, response, next) => {
     const {type, ...data} = request.body.data;
     const token = request.body.token
     if (AD_TOKEN !== token) {
-      return response.status(500).json({message: 'Invalid token'}).send()
+      //Тут можно добавить логгирование для левых запросов на данный эндпоинт
     }
     const ad = new AdResult({
       type,
@@ -20,10 +21,8 @@ dashboardRouter.post('/api/dashboard', async (request, response, next) => {
       additionalData: data,
     });
     await ad.save();
-    console.log(response.status(200).json({message: 'Success'}).send())
-    return response.status(200).json({message: 'Success'}).send();
   } catch (e) {
-    return response.status(500).json({message: 'Failure', error: JSON.stringify(e)}).send();
+    logger.error(e) // Выводим в консоль сервера ошибки, небезопасно
   }
 
 });
