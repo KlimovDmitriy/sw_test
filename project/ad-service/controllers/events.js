@@ -38,15 +38,10 @@ eventsRouter.post('/api/ads', async (request, response, next) => {
     }
     const callbackUrl = contractor.callbackUrl;
     const callbackRequest = await axios.post(callbackUrl, {data, token});
-    if (callbackRequest.status === 200) {
-      response.status(200);
-    } else {
-      response.status(500).
-          json({status: callbackRequest.status, data: callbackRequest.data});
-    }
+    response.status(200);
   } catch (e) {
-    console.log(e)
-    response.status(400).json({error: e});
+    console.log(e);
+    response.status(400).json({error: JSON.stringify(e)});
   }
 
 });
