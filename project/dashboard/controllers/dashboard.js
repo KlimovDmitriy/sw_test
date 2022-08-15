@@ -9,7 +9,6 @@ dashboardRouter.get('/api/dashboard', async (request, response) => {
 
 dashboardRouter.post('/api/dashboard', async (request, response, next) => {
   try {
-    console.log(request.body)
     const {type, ...data} = request.body.data;
     const token = request.body.token
     if (AD_TOKEN !== token) {
@@ -23,7 +22,7 @@ dashboardRouter.post('/api/dashboard', async (request, response, next) => {
     await ad.save();
     response.status(200).json({message: 'Success'});
   } catch (e) {
-    response.status(500).json({message: 'Failure', error: e});
+    response.status(500).json({message: 'Failure', error: e.stringify()});
   }
 
 });
