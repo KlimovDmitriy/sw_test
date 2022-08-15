@@ -9,22 +9,22 @@ dashboardRouter.get('/api/dashboard', async (request, response) => {
 });
 
 dashboardRouter.post('/api/dashboard', async (request, response, next) => {
-  return {status: 200}
-  try {
-    const {type, ...data} = request.body.data;
-    const token = request.body.token
-    if (AD_TOKEN !== token) {
-      //Тут можно добавить логгирование для левых запросов на данный эндпоинт
-    }
-    const ad = new AdResult({
-      type,
-      createdAt: new Date(),
-      additionalData: data,
-    });
-    await ad.save();
-  } catch (e) {
-    logger.error(e) // Выводим в консоль сервера ошибки, небезопасно
-  }
+  response.status(201).send({message: 'Success'})
+  // try {
+  //   const {type, ...data} = request.body.data;
+  //   const token = request.body.token
+  //   if (AD_TOKEN !== token) {
+  //     //Тут можно добавить логгирование для левых запросов на данный эндпоинт
+  //   }
+  //   const ad = new AdResult({
+  //     type,
+  //     createdAt: new Date(),
+  //     additionalData: data,
+  //   });
+  //   await ad.save();
+  // } catch (e) {
+  //   logger.error(e) // Выводим в консоль сервера ошибки, небезопасно
+  // }
 
 });
 
