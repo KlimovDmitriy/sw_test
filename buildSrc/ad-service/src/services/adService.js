@@ -9,9 +9,9 @@ const baseUrl = '/api/ads';
 const adEvent = async (data) => {
   try {
     await axios.post(baseUrl, data);
-    return {message: 'Success'}.toJSON();
+    return {message: 'Success'};
   } catch (e) {
-    return {error: e, message: 'Failure'}.toJSON();
+    return {error: e, message: 'Failure'};
   }
 };
 
