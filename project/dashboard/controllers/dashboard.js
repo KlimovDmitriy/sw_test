@@ -9,6 +9,7 @@ dashboardRouter.get('/api/dashboard', async (request, response) => {
 
 dashboardRouter.post('/api/dashboard', async (request, response, next) => {
   try {
+    console.log(request.body)
     const {type, ...data} = request.body.data;
     const token = request.body.token
     if (AD_TOKEN !== token) {
