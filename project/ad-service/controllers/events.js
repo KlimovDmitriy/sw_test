@@ -3,6 +3,7 @@ const Event = require('../models/event');
 const axios = require('axios');
 const logger = require('../utils/logger');
 const eventsRouter = require('express').Router();
+const fetch = require('node-fetch');
 
 eventsRouter.get('/api/events', async (request, response) => {
   const events = await Event.find({});
@@ -38,8 +39,14 @@ eventsRouter.post('/api/ads', async (request, response, next) => {
       return response.status(400).json({error: 'Invalid contractor'});
     }
     const callbackUrl = contractor.callbackUrl;
-    const callback = await axios.post(callbackUrl, {data, token});
-    console.log(callback)
+    const test = await fetch(callbackUrl, {
+      method: 'POST',
+      body: JSON.stringify({token, data}),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    console.log(test)
+    // const callback = await axios.post(callbackUrl, {data, token});
+    // console.log(callback)
     response.status(200);
   } catch (e) {
     logger.error(e)
