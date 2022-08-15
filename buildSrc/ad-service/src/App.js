@@ -30,6 +30,7 @@ function App() {
     adService.adEvent({
       type,
       additionalData,
+      token: contractor.token
     }).then(resolve => {
       if (resolve.error) {
         console.error(resolve.error);
