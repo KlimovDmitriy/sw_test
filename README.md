@@ -32,7 +32,7 @@ npm install
 npm run populate
 npm start
 ```
-npm run populate - заполняет базу "рыбными" данными  
+npm run populate - заполняет базу базовыми типами событий и добавляет контрагента
 
 # Использованные технологии
 - Backend - NodeJS
