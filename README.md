@@ -38,4 +38,4 @@ npm run populate - заполняет базу "рыбными" данными
 # Использованные технологии
 - Backend - NodeJS
 - Frontend - ReactJS
-- Datebase - MongoDB
+- Database - MongoDB
