@@ -1,13 +1,8 @@
 import axios from 'axios'
-const baseUrl = '/api/charts'
+const baseUrl = 'http://localhost:3010/api/dashboard'
 
-const login = async ({ username, password }) => {
-  const request = await axios.post(`${baseUrl}/login`, { username, password })
-  return request.data
+const getEventsData = async () => {
+  const response = await axios.get(baseUrl);
+  return response.data
 }
-
-const register = async ({ username, password }) => {
-  const request = await axios.post(`${baseUrl}/register`, { username, password })
-  return request.data
-}
-export default { login, register }
+export default { getEventsData }

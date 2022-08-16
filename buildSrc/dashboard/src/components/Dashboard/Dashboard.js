@@ -1,52 +1,23 @@
-import {
-  CartesianGrid, Legend, Line,
-  LineChart,
-  ResponsiveContainer, Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts';
-import {Container} from 'react-bootstrap';
+import {Container, FloatingLabel, Form} from 'react-bootstrap';
+import Chart from './Chart'
+import {useSelector} from 'react-redux';
 
 const Dashboard = () => {
-  const installData = [
-    {
-      date: '2022-01-01',
-      install: 4
-    },
-    {
-      date: '2022-01-02',
-      install: 3
-    },
-    {
-      date: '2022-01-03',
-      install: 10
-    },
-    {
-      date: '2022-01-04',
-      install: 1
-    },
-  ];
+  let dashboardData = useSelector(state => state.dashboard.data)
+
+
 
   return (
       <Container>
-        <ResponsiveContainer width={'50%'} height={300}>
-          <LineChart
-              data={installData}
-              margin={{
-                top: 5,
-                bottom: 5,
-              }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="install" stroke="#8884d8" activeDot={{ r: 8 }} />
-          </LineChart>
-        </ResponsiveContainer>
+        <FloatingLabel controlId="floatingSelect" label="*В РАБОТЕ* Выберите тип отображения" className="mb-2">
+          <Form.Select>
+            <option value="1">По дням</option>
+            <option value="2">Суммарный</option>
+          </Form.Select>
+        </FloatingLabel>
+        {dashboardData.map((item, index) => <Chart type={Object.keys(item)[0]} key={index} data={item}/>)}
       </Container>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
