@@ -5,7 +5,6 @@
 MONGODB_URL=*URL MongoDB*  
 PORT=*Порт проекта*  
 SECRET=*Секретное слово для bcrypt*  
-AD_TOKEN=$2b$10$iyUVMzABsLYVyJyzvJt9M.GstP8jPGyd.WwB6ht4nT48RWqIuZiBG  
 В /project/dashboard требуется добавить:  
 MONGODB_URL=*URL MongoDB*  
 PORT=*Порт проекта*  
