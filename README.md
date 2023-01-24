@@ -1,4 +1,4 @@
-# Климов Дмитрий для ScoreWarrior
+# Климов Дмитрий
 # Первоначальная настройка
 В папках /project/dashboard и /project/ad-service добавить файл окружения .env  
 В /project/ad-service требуется добавить:  
